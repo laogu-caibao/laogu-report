@@ -1,0 +1,5 @@
+slug: laogu-report
+display_name: 定期报告深拆
+description: 定期报告深拆：输入公司与报告期，逐项拆解年报/半年报/季报的利润表、资产负债表、现金流量表、杜邦三因子与分红方案，输出中文深拆报告。
+version: 1.0.0
+author: 老谷拆财报
