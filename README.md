@@ -51,6 +51,25 @@ https://github.com/laogu-caibao/laogu-report/archive/refs/heads/main.zip
 调用时提供：公司名称/代码 + 报告期，例如"贵州茅台 2026 年半年报"。
 
 ---
+## English
+
+**laogu-report — Periodic report deep-dive.** Give a company and reporting period; get the income statement, balance sheet and cash-flow statement dissected item by item, plus DuPont analysis and the dividend plan, in Chinese. Install: `npx skills add laogu-caibao/laogu-report`.
+
+## FAQ
+
+**Q：laogu-report 有什么用？**
+适合的场景：拿到一份年报/半年报/季报，想逐项拆开看三张表和杜邦分析，而不是只看利润增速。
+
+**Q：数据可靠吗？会荐股吗？**
+数字必须来自可核验的公开来源（上市公司公告、交易所公开数据、公开网页），取不到就标「未核验」，绝不编造；只做结构化整理与解读，不构成投资建议。
+
+**Q：怎么安装？支持哪些 AI 平台？**
+```bash
+npx skills add laogu-caibao/laogu-report
+```
+平台中立 Markdown，Claude Code、Codex、豆包智能体、Workbuddy、扣子 Coze、Trae 等环境均可用；数据能力可用 [laogu-mcp](https://github.com/laogu-caibao/laogu-mcp)（`uvx laogu-mcp`）一次装齐。更多 skill 见[老谷拆财报组织主页](https://github.com/laogu-caibao)。
+---
+
 ## 出品
 
 **老谷拆财报** —— 以数据为刃，剖市场真相
