@@ -6,6 +6,10 @@
 
 ## 一键安装
 
+```bash
+npx skills add laogu-caibao/laogu-report
+```
+
 仓库地址（点击复制）：
 
 `https://github.com/laogu-caibao/laogu-report`
