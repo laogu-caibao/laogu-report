@@ -1,10 +1,15 @@
-# 定期报告深拆
+<!-- About 简介（推送后填写到仓库 About 栏）：
+定期报告深拆 ｜ 一键安装：npx skills add laogu-caibao/laogu-report
+-->
+<!-- topics（推送后打）：laogu-report, agent-skills, claude-code, a-share, finance, chinese -->
 
-`laogu-report`
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="laogu-report — 定期报告深拆：一份年报 / 半年报 / 季报，逐项拆开看：钱从哪来、利润怎么变、现金跟不跟得上。">
+</p>
 
-定期报告深拆 skill：输入公司名称/代码 + 报告期，逐项拆解年报/半年报/季报。
+> **一句话介绍**：定期报告深拆——一份年报 / 半年报 / 季报，逐项拆开看：钱从哪来、利润怎么变、现金跟不跟得上。
 
-## 一键安装
+**一键安装**：在支持 skills 的 AI 助手里运行
 
 > 觉得有用，请先给本仓库点个 ⭐ Star 再安装（GitHub：github.com/laogu-caibao/laogu-report）。
 
@@ -12,9 +17,41 @@
 npx skills add laogu-caibao/laogu-report
 ```
 
-仓库地址（点击复制）：
+## 它能帮你做什么
 
-`https://github.com/laogu-caibao/laogu-report`
+- 输出 8 段：报告摘要、利润表、资产负债表、现金流勾稽、杜邦三因子、分红方案、股东与治理信号、风险点清单
+- 报告正文为唯一真源：东财公告列表接口定位公告 → 正文抓取接口抓全文（自动翻页），PDF 兜底；不直接 curl 公告详情页（JS 空壳）
+- 正文抓不到、搜索补不到的，一律标注“未核验”——把零幻觉做成流程硬规则
+- 银行 / 保险等金融企业不适用杜邦与现金流勾稽，改用资本充足率、净息差、不良率等核心指标
+
+## 它是什么
+
+一个定期报告深拆 skill：输入公司名称 / 代码 + 报告期（如贵州茅台 2026 年半年报），逐项拆解年报 / 半年报 / 季报（利润表、资产负债表、现金流量表、杜邦三因子、分红方案），输出中文深拆报告。
+
+纯 Markdown、平台中立：Claude Code / Codex / 豆包智能体 / Workbuddy / 扣子 Coze / Trae 都能用。
+
+## 为什么不同
+
+- 正文优先于搜索：先拿报告正文，再用网页搜索交叉补足，至少两源交叉
+- 现金流勾稽是硬项：经营现金流净额 vs 归母净利润、收现比，警惕“利润增、现金不增”
+- 股东与治理信号单独成段：看大股东的真实态度（前十大股东变化、增减持、回购）
+
+## 快速上手
+
+```bash
+# 1. 安装
+npx skills add laogu-caibao/laogu-report
+```
+
+### 第一次使用
+
+输入公司 + 报告期即运行。装好后对 AI 说一句话即可：
+
+```text
+深拆贵州茅台 2026 年半年报
+```
+
+### 其他安装方式
 
 **方式一：克隆**
 
@@ -33,12 +70,37 @@ https://github.com/laogu-caibao/laogu-report/archive/refs/heads/main.zip
 - 扣子 Coze：扣子编程 → 技能面板 → 创建技能 → 本地上传，上传本仓库打包的 zip（仓库根目录已有 SKILL.md，直接压缩仓库文件夹即可）；如页面要求 `.skill` 后缀，由扣子导入后自动生成，不要只改扩展名。
 - Trae：设置 → 技能 → 上传技能，上传同上 zip；或手动放到 `~/.trae/skills/laogu-report/`（项目级用 `.trae/skills/laogu-report/`）。Trae 也支持 MCP：把 `uvx laogu-mcp` 配进 MCP 设置即可获得 16 个工具（skill 负责流程指导、MCP 负责工具调用）。
 - 一次装好全部 16 个：用 [laogu-mcp](https://github.com/laogu-caibao/laogu-mcp)，`uvx laogu-mcp` 一键安装。
-## 文件结构
 
-- `SKILL.md` — 主流程（平台中立，需用户输入公司+报告期，不自动运行）
-- `references/sources.md` — 数据源：东财公告列表→正文抓取接口链、巨潮/上交所/深交所备选、网页搜索交叉模板
+## 什么时候用 / 什么时候不用
 
-## 输出结构
+**什么时候用：**
+
+- 一份定期报告出来，想逐项看清营收结构、费用、现金流与 ROE 驱动因子时
+- 想核对“利润好看但收不到现金”这类勾稽疑点时
+
+**什么时候不用：**
+
+- 只要一句话快讯式摘要时——它输出的是一份深拆报告，篇幅与之匹配
+- 要跨公司横向对比估值时——用 `laogu-value`；要财务风险灯号时——用 `laogu-risk`
+
+## 目录结构
+
+```
+laogu-report/
+├── SKILL.md  # 主流程（平台中立，纯 Markdown，可移植）
+├── references/sources.md  # 数据源（2026-09-29 实测修订）
+├── docs/  # 关注二维码（抖音 / 视频号）
+├── assets/  # README 配图（hero.svg）
+├── LICENSE  # MIT 协议
+├── README.md  # 本文件
+├── icon-512.png  # skill 图标
+├── manifest.yaml  # SkillHub 发布元数据（slug / 版本 / 显示名）
+└── mcp-config.json  # MCP 配置
+```
+
+## 细节
+
+### 输出结构
 
 - 报告摘要（报告期、营收、归母净利、毛利率、同比）
 - 利润表拆解（营收结构、毛利率、期间费用率、归母净利同比与归因）
@@ -48,11 +110,18 @@ https://github.com/laogu-caibao/laogu-report/archive/refs/heads/main.zip
 - 分红方案（每10股派息、股息率、分红比例）
 - 风险点清单（3-5 条）
 
-## 使用方式
+### 使用方式
 
 调用时提供：公司名称/代码 + 报告期，例如"贵州茅台 2026 年半年报"。
 
 ---
+
+## 自检与反馈
+
+本 skill 内置质检能力（自迭代协议 v1.0）：宿主 Agent 每次执行前先跑一遍 SKILL.md 里的质检清单（日期锚、数字来源、口径核对），输出前必查。
+
+发现 bug 或有改进建议，以 `[QC] <一句话问题>` 为标题提交到 https://github.com/laogu-caibao/laogu-report/issues，正文写清“复现步骤 → 实际表现 → 期望表现”。
+
 ## English
 
 **laogu-report — Periodic report deep-dive.** Give a company and reporting period; get the income statement, balance sheet and cash-flow statement dissected item by item, plus DuPont analysis and the dividend plan, in Chinese. Install: `npx skills add laogu-caibao/laogu-report`.
